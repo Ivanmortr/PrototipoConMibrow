@@ -7,7 +7,7 @@ public class NPCMOVIMIENTO : MonoBehaviour
     public GameObject[] puntosDeInteresObjects;
     private NavMeshAgent agent;
     private Vector3 target;
-    private SituacionEconomica situacionEconomica;
+    public SituacionEconomica situacionEconomica;
     const string puntosDeInteresTag = "PUNTOSDEINTERES";
     private void Awake()
     {
@@ -48,7 +48,7 @@ public class NPCMOVIMIENTO : MonoBehaviour
         return probabilidad;
     }
 }
-enum SituacionEconomica
+public enum SituacionEconomica
 {
     Naco,
     ClaseMedia,

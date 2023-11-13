@@ -37,7 +37,6 @@ public class PlayerSCRIPT : MonoBehaviour
     void RefillDelivery()
     {
         timer-=Time.deltaTime;
-       Debug.Log("El Temach");
 
         if(timer < 0 )
         {
@@ -45,7 +44,6 @@ public class PlayerSCRIPT : MonoBehaviour
             timer = coolDownTime;
             gameObject.GetComponentInParent<Almacen>().currentProduct -= currProduct;
             agent.SetDestination(target.position);
-            Debug.Log("Gaviota");
         }
         
 
@@ -54,6 +52,7 @@ public class PlayerSCRIPT : MonoBehaviour
     {
         if (other.GetComponent<NPCMOVIMIENTO>())
         {
+            Debug.Log("La Gaviota");
             if (other.GetComponent<NPCMOVIMIENTO>().probabilidadVenta()) { StartSale(); }
             
         }
@@ -62,6 +61,7 @@ public class PlayerSCRIPT : MonoBehaviour
    
     public void StartSale()
     {
+       Debug.Log("El Temach");
         var venta = Random.Range(1, 5);
         currProduct -= venta;
         dineritoPalTapanko += venta * 35;//Num Tamales vendidos por su precio:$35
