@@ -12,7 +12,7 @@ public class Almacen : MonoBehaviour
 
     
     [ContextMenuItem("MejoraCapacidad", "IncreaseMaxCap")]
-    public int maxProduct = 100;    
+    public int maxProduct = 1000;    
     [ContextMenu ("hola mi niña")]
     public void IncreaseMaxCap()
     {

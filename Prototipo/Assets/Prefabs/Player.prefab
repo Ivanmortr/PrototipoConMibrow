@@ -144,6 +144,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  currProduct: 100
+  coolDownTime: 30
+  timer: 0
 --- !u!114 &-4239525743079445360
 MonoBehaviour:
   m_ObjectHideFlags: 0

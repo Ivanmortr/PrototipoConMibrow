@@ -8,35 +8,50 @@ public class PlayerSCRIPT : MonoBehaviour
     [SerializeField] private Transform target;
     private NavMeshAgent agent;
     
-    int productCap = 1000;
-   public int currProduct = 1000;
+    int productCap = 100;
+   public int currProduct = 100;
+    public int coolDownTime = 30;
+    public float timer;
     int dineritoPalTapanko;
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        target = GameObject.Find("OBJETIVO").transform;
+        target = GameObject.Find("OBJETIVO").transform;        
+        timer = coolDownTime;
     }
 
     private void FixedUpdate()
     {
         agent.SetDestination(target.position);
 
-        if (currProduct == 0) { agent.SetDestination(gameObject.transform.parent.position); }
-        if (Vector3.Distance(gameObject.transform.position, gameObject.transform.parent.position) < 10)
-        {
-            RefillDelivery();
+        if (currProduct == 0) {
+            
+            agent.SetDestination(gameObject.transform.parent.position);
+            if (Vector3.Distance(gameObject.transform.position, gameObject.transform.parent.position) < 5)
+            {
+                RefillDelivery();
+            }
         }
+        
     }
     void RefillDelivery()
     {
-        currProduct = productCap;
-        gameObject.GetComponentInParent<Almacen>().currentProduct-=currProduct;
-        agent.SetDestination(target.position);
+        timer-=Time.deltaTime;
+       Debug.Log("El Temach");
+
+        if(timer < 0 )
+        {
+            currProduct = productCap;
+            timer = coolDownTime;
+            gameObject.GetComponentInParent<Almacen>().currentProduct -= currProduct;
+            agent.SetDestination(target.position);
+            Debug.Log("Gaviota");
+        }
+        
 
     }
     public void OnTriggerEnter(Collider other)
     {
-            Debug.Log("El Temach");
         if (other.GetComponent<NPCMOVIMIENTO>())
         {
             if (other.GetComponent<NPCMOVIMIENTO>().probabilidadVenta()) { StartSale(); }
@@ -44,6 +59,7 @@ public class PlayerSCRIPT : MonoBehaviour
         }
     }
 
+   
     public void StartSale()
     {
         var venta = Random.Range(1, 5);

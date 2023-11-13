@@ -1110,7 +1110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   comprado: 0
-  currentProduct: 0
+  currentProduct: 950
   maxProduct: 950
 --- !u!1001 &1750228903
 PrefabInstance:
